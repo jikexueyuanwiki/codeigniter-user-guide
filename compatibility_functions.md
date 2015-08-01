@@ -22,221 +22,183 @@ CodeIgniter 提供了一套兼容性函数，让你可以使用非原生的 PHP 
 
 ### 函数参考
 
-.. php:function:: password_get_info($hash)
+#### password_get_info($hash)
 
-	:param	string	$hash: Password hash
-	:returns:	Information about the hashed password
-	:rtype:	array
+* 参数 字符串 $hash: 哈希密码
+* 返回：哈希过的密码信息
+* 返回类型：数组
 
-	For more information, please refer to the `PHP manual for
-	password_get_info() <http://php.net/password_get_info>`_.
+更多信息，可以参考 `PHP password_get_info() 使用手册`
 
-.. php:function:: password_hash($password, $algo[, $options = array()])
+#### password_hash($password, $algo[, $options = array()])
 
-	:param	string	$password: Plain-text password
-	:param	int	$algo: Hashing algorithm
-	:param	array	$options: Hashing options
-	:returns:	Hashed password or FALSE on failure
-	:rtype:	string
+* 参数 字符串	$password: Plain-text 密码
+* 参数 整数	$algo: Hashing 算法
+* 参数 数组	$options: Hashing 参数
+* 返回	哈希过的密码，失败时返回 FALSE
+* 返回类型	字符串
 
-	For more information, please refer to the `PHP manual for
-	password_hash() <http://php.net/password_hash>`_.
+更多信息，可用参考 `PHP password_get_info() 使用手册`
 
-	.. note:: Unless you provide your own (and valid) salt, this function
-		has a further dependency on an available CSPRNG source. Each
-		of the following would satisfy that:
+注意: 除非你提供自己的（有效的）salt，这个函数可用进一步的提供依赖于可用的 CSPRNG 源。满足底下的每个条件：
+
 		- ``mcrypt_create_iv()`` with ``MCRYPT_DEV_URANDOM``
 		- ``openssl_random_pseudo_bytes()``
 		- /dev/arandom
 		- /dev/urandom
 
-.. php:function:: password_needs_rehash()
+#### password_needs_rehash()
 
-	:param	string	$hash: Password hash
-	:param	int	$algo: Hashing algorithm
-	:param	array	$options: Hashing options
-	:returns:	TRUE if the hash should be rehashed to match the given algorithm and options, FALSE otherwise
-	:rtype:	bool
+* 参数 字符串	$hash: 哈希密码
+* 参数 整数	$algo: 哈希算法
+* 参数 数组	$options: Hashing 参数
+* 返回	TRUE 如果哈希符合给定的算法和参数，返回 TRUE，否则返回 FALSE
+* 返回类型	bool
 
-	For more information, please refer to the `PHP manual for
-	password_needs_rehash() <http://php.net/password_needs_rehash>`_.
+更多信息，可以参考 `PHP password_needs_rehash() 使用手册`
 
-.. php:function:: password_verify($password, $hash)
+#### password_verify($password, $hash)
 
-	:param	string	$password: Plain-text password
-	:param	string	$hash: Password hash
-	:returns:	TRUE if the password matches the hash, FALSE if not
-	:rtype:	bool
+* 参数 字符串	$password: 纯文本密码
+* 参数 字符串	$hash: 哈希密码
+* 返回	TRUE 如果密码和哈希匹配返回 TRUE，否则返回 FALSE。
+* 返回类型	bool
 
-	For more information, please refer to the `PHP manual for
-	password_verify() <http://php.net/password_verify>`_.
+更多信息，可以参考 `PHP password_verify() 使用手册`
 
-*********************
-Hash (Message Digest)
-*********************
+## 哈希 (消息摘要)
 
-This compatibility layer contains backports for the ``hash_equals()``
-and ``hash_pbkdf2()`` functions, which otherwise require PHP 5.6 and/or
-PHP 5.5 respectively.
+这个兼容性层包含了 `hash_equals()` 和 `hash_pbkdf2()` 函数的公钥，除此之外还分别要求 PHP 5.6 和/或 5.5。
 
-Dependencies
-============
+### 依赖
 
-- None
+- 无
 
-Function reference
-==================
+### 函数参考
 
-.. php:function:: hash_equals($known_string, $user_string)
+#### hash_equals($known_string, $user_string)
 
-	:param	string	$known_string: Known string
-	:param	string	$user_string: User-supplied string
-	:returns:	TRUE if the strings match, FALSE otherwise
-	:rtype:	string
+* 参数 字符串	$known_string: 已知字符串
+* 参数 字符串	$user_string: 用户提供的字符串
+* 返回	如果字符串匹配返回 TRUE，否则返回 FALSE
+* 返回类型	字符串
 
-	For more information, please refer to the `PHP manual for
-	hash_equals() <http://php.net/hash_equals>`_.
+更多信息，可以参考 `PHP hash_equals() 使用手册`。
 
-.. php:function:: hash_pbkdf2($algo, $password, $salt, $iterations[, $length = 0[, $raw_output = FALSE]])
+#### hash_pbkdf2($algo, $password, $salt, $iterations[, $length = 0[, $raw_output = FALSE]])
 
-	:param	string	$algo: Hashing algorithm
-	:param	string	$password: Password
-	:param	string	$salt: Hash salt
-	:param	int	$iterations: Number of iterations to perform during derivation
-	:param	int	$length: Output string length
-	:param	bool	$raw_output: Whether to return raw binary data
-	:returns:	Password-derived key or FALSE on failure
-	:rtype:	string
+* 参数 字符串	$algo: 哈希算法
+* 参数 字符串	$password: 密码
+* 参数 字符串	$salt: 哈希 salt
+* 参数 整数	$iterations: 迭代过程中执行的次数
+* 参数 整数	$length: 输出字符串的长度
+* 参数 bool	$raw_output: 是否返回原始二级制数据
+* 返回	成功返回加密过的值，失败返回 FALSE
+* 返回类型	字符串
 
-	For more information, please refer to the `PHP manual for
-	hash_pbkdf2() <http://php.net/hash_pbkdf2>`_.
+更多信息，可以参考 `PHP hash_pbkdf2() 使用手册`。
 
-****************
-Multibyte String
-****************
+## 多字节字符串
 
-This set of compatibility functions offers limited support for PHP's
-`Multibyte String extension <http://php.net/mbstring>`_. Because of
-the limited alternative solutions, only a few functions are available.
+这套兼容性函数提供为 多字节字符串扩展提供有限支持。因为有限的替代方法，只有几个函数可用。
 
-.. note:: When a character set parameter is ommited,
-	``$config['charset']`` will be used.
+注意: 当一个字符参数忽略，可以使用 `$config['charset']`。
 
-Dependencies
-============
+## 依赖性
 
-- `iconv <http://php.net/iconv>`_ extension
+- [iconv](<http://php.net/iconv>) 扩展
 
-.. important:: This dependency is optional and these functions will
-	always be declared. If iconv is not available, they WILL
-	fall-back to their non-mbstring versions.
+注意: 这个依赖性是可选的，这个函数总是被声明。如果 iconv 不可用，他们将会回退到 non-mbstring 版本。
 
-.. important:: Where a character set is supplied, it must be
-	supported by iconv and in a format that it recognizes.
+注意: 当提供字符设置时，必须通过 iconv 和 它认识的格式来支持。
 
-.. note:: For you own dependency check on the actual mbstring
-	extension, use the ``MB_ENABLED`` constant.
+注意: 你再检查 mbstring 扩展时，可以使用 `MB_ENABLED` 常量。
 
-Function reference
-==================
+## 函数参考
 
-.. php:function:: mb_strlen($str[, $encoding = NULL])
+#### mb_strlen($str[, $encoding = NULL])
 
-	:param	string	$str: Input string
-	:param	string	$encoding: Character set
-	:returns:	Number of characters in the input string or FALSE on failure
-	:rtype:	string
+* 参数 字符串	$str: 输入字符串
+* 参数 字符串	$encoding: 字符集
+* 返回	输入字符串的字符数，失败返回 FALSE
+* 返回类型	字符串
 
-	For more information, please refer to the `PHP manual for
-	mb_strlen() <http://php.net/mb_strlen>`_.
+更多信息，可以参考 [PHP mb_strlen() 使用手册](http://php.net/mb_strlen)。
 
-.. php:function:: mb_strpos($haystack, $needle[, $offset = 0[, $encoding = NULL]])
+#### mb_strpos($haystack, $needle[, $offset = 0[, $encoding = NULL]])
 
-	:param	string	$haystack: String to search in
-	:param	string	$needle: Part of string to search for
-	:param	int	$offset: Search offset
-	:param	string	$encoding: Character set
-	:returns:	Numeric character position of where $needle was found or FALSE if not found
-	:rtype:	mixed
+* 参数 字符串	$haystack: 需要搜索的字符串
+* 参数 字符串	$needle: 需要搜索部分字符串
+* 参数 整数	$offset: 搜索偏移量
+* 参数 字符串	$encoding: 字符集
+* 返回	$needle 字符所在的位置，失败返回 FALSE
+* 返回类型	混合
 
-	For more information, please refer to the `PHP manual for
-	mb_strpos() <http://php.net/mb_strpos>`_.
+更多信息，可以参考 [PHP mb_strpos() 使用手册](http://php.net/mb_strpos)。
 
-.. php:function:: mb_substr($str, $start[, $length = NULL[, $encoding = NULL]])
+#### mb_substr($str, $start[, $length = NULL[, $encoding = NULL]])
 
-	:param	string	$str: Input string
-	:param	int	$start: Position of first character
-	:param	int	$length: Maximum number of characters
-	:param	string	$encoding: Character set
-	:returns:	Portion of $str specified by $start and $length or FALSE on failure
-	:rtype:	string
+* 参数 字符串	$str: 输入字符串
+* 参数 整数	$start: 第一个字符的位置
+* 参数 整数	$length: 字符的最大数量
+* 参数 字符串	$encoding: 字符集
+* 返回	返回从 $start 开始，长度为 $lengthPortion 的字符串，失败返回 FALSE。
+* 返回类型	字符串
 
-	For more information, please refer to the `PHP manual for
-	mb_substr() <http://php.net/mb_substr>`_.
+更多信息，可以参考 [PHP mb_substr() 使用手册](http://php.net/mb_substr)。
 
-******************
-Standard Functions
-******************
+## 标准函数
 
-This set of compatibility functions offers support for a few
-standard functions in PHP that otherwise require a newer PHP version.
+这套兼容性函数提供一些标准的 PHP 函数支持，不过需要新版本的 PHP。
 
-Dependencies
-============
+### 依赖性
 
-- None
+- 无
 
-Function reference
-==================
+### 函数参考
 
-.. php:function:: array_column(array $array, $column_key[, $index_key = NULL])
+#### array_column(array $array, $column_key[, $index_key = NULL])
 
-	:param	array	$array: Array to fetch results from
-	:param	mixed	$column_key: Key of the column to return values from
-	:param	mixed	$index_key: Key to use for the returned values
-	:returns:	An array of values representing a single column from the input array
-	:rtype:	array
+* 参数 数组	$array: 取结果的源数组
+* 参数 混合	$column_key: 取结果的列的 key
+* 参数 混合	$index_key: 返回值的 key
+* 返回	从多维数组中取回某列数组
+* 返回类型	数组
 
-	For more information, please refer to the `PHP manual for
-	array_column() <http://php.net/array_column>`_.
+更多信息，可以参考 [PHP array_column() 使用手册](http://php.net/array_column)。
 
-.. php:function:: array_replace(array $array1[, ...])
+#### array_replace(array $array1[, ...])
 
-	:param	array	$array1: Array in which to replace elements
-	:param	array	...: Array (or multiple ones) from which to extract elements
-	:returns:	Modified array
-	:rtype:	array
+* 参数 数组	$array1: 将要替换的数组
+* 参数 array	...: 需要提前内容的数组
+* 返回	修改后的数组
+* 返回类型	数组
 
-	For more information, please refer to the `PHP manual for
-	array_replace() <http://php.net/array_replace>`_.
+更多信息，可以参考 [PHP array_replace() 使用手册](http://php.net/array_replace)。
 
-.. php:function:: array_replace_recursive(array $array1[, ...])
+#### array_replace_recursive(array $array1[, ...])
 
-	:param	array	$array1: Array in which to replace elements
-	:param	array	...: Array (or multiple ones) from which to extract elements
-	:returns:	Modified array
-	:rtype:	array
+* 参数 数组	$array1: 将要替换内容的数组
+* 参数 array	...: 将要提取内容的数组
+* 返回	修改后的数组
+* 返回类型	数组
 
-	For more information, please refer to the `PHP manual for
-	array_replace_recursive() <http://php.net/array_replace_recursive>`_.
+更多信息，可以参考 [PHP array_replace_recursive() 使用手册](http://php.net/array_replace_recursive)。
 
-	.. important:: Only PHP's native function can detect endless recursion.
-		Unless you are running PHP 5.3+, be careful with references!
+注意: 只有 PHP 原生函数可以检测无穷递归。除非你的 PHP 版本是 5.3+,否则你要消息使用。
 
-.. php:function:: hex2bin($data)
+#### hex2bin($data)
 
-	:param	array	$data: Hexadecimal representation of data
-	:returns:	Binary representation of the given data
-	:rtype:	string
+* 参数 数组	$data: 16 进制的数据
+* 返回	参数的二级制表示
+* 返回类型	字符串
 
-	For more information, please refer to the `PHP manual for hex2bin()
-	<http://php.net/hex2bin>`_.
+更多信息，可以参考 [PHP hex2bin() 使用手册](http://php.net/hex2bin)。
 
-.. php:function:: quoted_printable_encode($str)
+#### quoted_printable_encode($str)
 
-	:param	string	$str: Input string
-	:returns:	8bit-encoded string
-	:rtype:	string
+* 参数 字符串	$str: 输入字符串
+* 返回	8bit-encoded 字符串
+* 返回类型	字符串
 
-	For more information, please refer to the `PHP manual for
-	quoted_printable_encode() <http://php.net/quoted_printable_encode>`_.
+更多信息，可以参考 [PHP quoted_printable_encode() 使用手册](http://php.net/quoted_printable_encode)。

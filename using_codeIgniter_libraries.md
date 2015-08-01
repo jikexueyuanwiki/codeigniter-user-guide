@@ -1,4 +1,4 @@
-#使用 CodeIgniter 库
+# 使用 CodeIgniter 库
 
 所有可用的库文件都位于 *system/libraries/* 文件夹里。多数情况下，你需要在控制器中初始化后才能使用它们，方法如下：
 
