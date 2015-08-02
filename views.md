@@ -166,11 +166,5 @@ CodeIgniter 将会智能的处理多个从控制器发起的 `$this->load->view(
 ## 返回视图
 
 view 函数第三个可选参数可以改变函数的行为，让数据作为字符串返回而不是发送到浏览器。如果你想用其他方法处理数据，这会很有用。如果你将参数设置为 TRUE (boolean)，它将会返回数据。默认为 false，这样会发送给浏览器。如果你想要返回数据，记得将他赋值给变量。
-There is a third **optional** parameter lets you change the behavior of
-the method so that it returns data as a string rather than sending it
-to your browser. This can be useful if you want to process the data in
-some way. If you set the parameter to TRUE (boolean) it will return
-data. The default behavior is false, which sends it to your browser.
-Remember to assign it to a variable if you want the data returned::
 
 	$string = $this->load->view('myfile', '', TRUE);

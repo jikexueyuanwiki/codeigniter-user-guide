@@ -87,7 +87,7 @@
 
 你将会看到新的消息。
 
-## 将 URI 段传递给你的方法
+## 将 URI 段作为参数传递给你的方法
 
 如果你的 URI 的段落超过 2 个，他们将会作为参数传递。
 
@@ -107,7 +107,7 @@
 		}
 	}
 
-注意：如果你使用了[URI 路由]特性，传递给你的方法的参数将会是重新路由过的对象。
+注意：如果你使用了 URI 路由特性，传递给你的方法的参数将会是重新路由过的对象。
 
 ## 定义一个默认控制器
 
@@ -117,7 +117,7 @@
 
 当 Blog 正是你想用使用的控制器类时。现在如果你加载 index.php，而没有指定任何 URI 段，默认情况下将会看到 "Hello World" 消息。
 
-## 重新隐私调用方法
+## 重新映射调用方法
 
 如上所述，URI 的第二个段通常会确定调用控制器里的哪个方法。CodeIgniter 允许你重写这个行为，通过使用 `_remap()` 方法。
 
@@ -126,7 +126,7 @@
 		// Some code here...
 	}
 
-注意: 如果你的控制器包含一个 _remap() 方法，它将会始终被调用，无论你的 URI 包含什么。它重写了正常的URI 决定调用哪个方法的行为，允许你来定义自己的路由规则。
+注意: 如果你的控制器包含一个 _remap() 方法，它将会始终被调用，无论你的 URI 包含什么。它重写了正常的 URI 决定调用哪个方法的行为，允许你来定义自己的路由规则。
 
 被重新定义的方法调用方式（一般是 URI 中的第二段）将作为一个参数传递给 `_remap()` ：
 
@@ -157,113 +157,71 @@
 		show_404();
 	}
 
-Processing Output
-=================
+## 处理输出
 
-CodeIgniter has an output class that takes care of sending your final
-rendered data to the web browser automatically. More information on this
-can be found in the :doc:`Views <views>` and :doc:`Output Class
-<../libraries/output>` pages. In some cases, however, you might want to
-post-process the finalized data in some way and send it to the browser
-yourself. CodeIgniter permits you to add a method named ``_output()``
-to your controller that will receive the finalized output data.
+CodeIgniter 拥有一个输出类用来确保你修改的数据会自动被传递给浏览器。关于这个的更多信息可以在视图和输出类里找到。有些时候，你可能想要自己发布修改一些最终的数据或是自己把它传递给浏览器。CodeIgniter 允许你给你的控制器增加一个名为 _output() 的方法来接收最终的数据。
 
-.. important:: If your controller contains a method named ``_output()``,
-	it will **always** be called by the output class instead of
-	echoing the finalized data directly. The first parameter of the
-	method will contain the finalized output.
+注意：如果你的控制器包含一个 _output() 方法，那么它将总是被调用，而不是直接输出最终的数据。这个方法类似于OO里的析构函数，不管你调用任何方法这个方法总是会被执行。例如：
 
-Here is an example::
 
 	public function _output($output)
 	{
 		echo $output;
 	}
 
-.. note::
+注意：你的 _output() 将接收最终的数据。 Benchmark 和内存的使用率数据将被渲染，缓存文件会被写入（如果已启用缓存），并且 HTTP 头也将被发送（如果您使用该功能），然后交给 _output() 函数。
 
-	Please note that your ``_output()`` method will receive the
-	data in its finalized state. Benchmark and memory usage data
-	will be rendered, cache files written (if you have caching
-	enabled), and headers will be sent (if you use that
-	:doc:`feature <../libraries/output>`) before it is handed off
-	to the ``_output()`` method.
-	To have your controller's output cached properly, its
-	``_output()`` method can use::
+为了让你的控制器输出缓存正确, 它的 _output() 函数可以这样来写:
+
 
 		if ($this->output->cache_expiration > 0)
 		{
 			$this->output->_write_cache($output);
 		}
 
-	If you are using this feature the page execution timer and
-	memory usage stats might not be perfectly accurate since they
-	will not take into account any further processing you do.
-	For an alternate way to control output *before* any of the
-	final processing is done, please see the available methods
-	in the :doc:`Output Library <../libraries/output>`.
 
-Private methods
-===============
+如果您正在使用页面执行时间和内存使用统计的功能，这可能不完全准确，因为他们不会考虑到你所做的任何进一步的动作。请在输出类参用可用的方法，来控制输出以使其在任何最终进程完成之前执行。
 
-In some cases you may want certain methods hidden from public access.
-In order to achieve this, simply declare the method as being private
-or protected and it will not be served via a URL request. For example,
-if you were to have a method like this::
+## 私有方法
+
+在某些情况下，你可能想要隐藏一些方法使之无法对外查阅。将方法私有化很简单，只要在方法名字前面加一个下划线（“_”）做前缀就无法通过 URL 访问到了。例如，如果你有一个像这样的方法：
 
 	private function _utility()
 	{
 		// some code
 	}
 
-Trying to access it via the URL, like this, will not work::
+那么，通过下面这样的 URL 进行访问是无法访问到的：
 
 	example.com/index.php/blog/_utility/
 
-.. note:: Prefixing method names with an underscore will also prevent
-	them from being called. This is a legacy feature that is left
-	for backwards-compatibility.
+注意:前缀方法名称使用下划线，是为了避免被调用。这是原本就有的功能，目的是向后兼容。 
 
-Organizing Your Controllers into Sub-directories
-================================================
+## 如何将控制器放入子文件夹中
 
-If you are building a large application you might find it convenient to
-organize your controllers into sub-directories. CodeIgniter permits you
-to do this.
+如果你在建立一个大型的应用程序，你会发现 CodeIgniter 可以很方便的将控制器放到一些子文件夹中。
 
-Simply create folders within your *application/controllers/* directory
-and place your controller classes within them.
+只要在 application/controllers 目录下创建文件夹并放入你的控制器就可以了。
 
-.. note:: When using this feature the first segment of your URI must
-	specify the folder. For example, let's say you have a controller located
-	here::
+注意：如果你要使用某个子文件夹下的功能，就要保证 URI 的第一个片段是用于描述这个文件夹的。例如说你有一个控制器在这里：
 
 		application/controllers/products/Shoes.php
 
-	To call the above controller your URI will look something like this::
+调用这个控制器的时候你的 URI 要这么写
 
 		example.com/index.php/products/shoes/show/123
 
-Each of your sub-directories may contain a default controller which will be
-called if the URL contains only the sub-folder. Simply name your default
-controller as specified in your *application/config/routes.php* file.
+你的每个子文件夹中需要包含一个默认的控制器，这样如果 URI 中只有子文件夹而没有具体功能的时候它将被调用。只要将你作为默认的控制器名称在 application/config/routes.php 文件中指定就可以了。
 
-CodeIgniter also permits you to remap your URIs using its :doc:`URI
-Routing <routing>` feature.
+CodeIgniter 也允许你使用 URI 路由 功能来重新定向 URI。
 
-Class Constructors
-==================
+## 构造函数
 
-If you intend to use a constructor in any of your Controllers, you
-**MUST** place the following line of code in it::
+如果要在你的任意控制器中使用构造函数的话，那么必须在里面加入下面这行代码：
 
 	parent::__construct();
 
-The reason this line is necessary is because your local constructor will
-be overriding the one in the parent controller class so we need to
-manually call it.
-
-Example::
+这行代码的必要性在于，你此处的构造函数会覆盖掉这个父控制器类中的构造函数，所以我们要手动调用它。例如:
 
 	<?php
 	class Blog extends CI_Controller {
@@ -275,28 +233,16 @@ Example::
 		}
 	}
 
-Constructors are useful if you need to set some default values, or run a
-default process when your class is instantiated. Constructors can't
-return a value, but they can do some default work.
+如果你需要设定某些默认的值或是在实例化类的时候运行一个默认的程序，那么构造函数在这方面就非常有用了。
 
-Reserved method names
-=====================
+构造函数并不能返回值，但是可以用来设置一些默认的功能。
 
-Since your controller classes will extend the main application
-controller you must be careful not to name your methods identically to
-the ones used by that class, otherwise your local functions will
-override them. See :doc:`Reserved Names <reserved_names>` for a full
-list.
+## 保留的方法名称
 
-.. important:: You should also never have a method named identically
-	to its class name. If you do, and there is no ``__construct()``
-	method in the same class, then your e.g. ``Index::index()``
-	method will be executed as a class constructor! This is a PHP4
-	backwards-compatibility feature.
+因为你添加的控制器类继承了主要的应用程序控制器，所以你要小心你的方法名不要和那个类中的方法名一样了，否则你的方法会覆盖原有的。详细信息请查看保留字部分
 
-That's it!
-==========
+注意: 你不要让方法名和类名相同。如果你这么做，将不会有构造函数，然后 `Index::index()` 方法将会作为类的构造函数执行。这是 PHP 4 向后兼容的特性。
 
-That, in a nutshell, is all there is to know about controllers.
+## 就这样
 
-[URI 路由]: routing.md
+好，以上就是有关控制器的所有内容了。

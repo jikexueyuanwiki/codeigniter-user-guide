@@ -1,10 +1,10 @@
 # 保留字
 
-为了便于编码，CodeIgniter 使用了一些列的函数，方法，类和变量名来完成操作。因此，有一些名字开发中不能使用。底下的列表中的保留名字不能被使用。
+为了便于编码，CodeIgniter 使用了一系列的函数，方法，类和变量名来完成操作。因此，有一些名字开发中不能使用。底下的列表中的保留字不能被使用。
 
 ## 控制器名
 
-因为你的控制器类继承自主程序控制器，你方法名一定不要和主程序控制器类中得函数名相同，否则你的局部方法将会覆盖他们。底下列出了保留的名字。不用在你的控制器中使用：
+因为你的控制器类继承自主程序控制器，你方法名一定不要和主程序控制器类中得函数名相同，否则你的局部方法将会覆盖他们。底下列出了保留的名字。不能在你的控制器中使用：
 
 
 -  CI_Controller
@@ -15,9 +15,9 @@
 
 -  :php:func:`is_php()`
 -  :php:func:`is_really_writable()`
--  ``load_class()``
--  ``is_loaded()``
--  ``get_config()``
+-  `load_class()`
+-  `is_loaded()`
+-  `get_config()`
 -  :php:func:`config_item()`
 -  :php:func:`show_error()`
 -  :php:func:`show_404()`
@@ -29,15 +29,15 @@
 -  :php:func:`is_https()`
 -  :php:func:`function_usable()`
 -  :php:func:`get_instance()`
--  ``_error_handler()``
--  ``_exception_handler()``
--  ``_stringify_attributes()``
+-  `_error_handler()`
+-  `_exception_handler()`
+-  `_stringify_attributes()`
 
 ## 变量
 
--  ``$config``
--  ``$db``
--  ``$lang``
+-  `$config`
+-  `$db`
+-  `$lang`
 
 ## 常量
 

@@ -1,16 +1,16 @@
 # 错误处理
 
-CodeIgniter 允许你在应用中使用以下的函数建立错误报告。另外，它又一个错误日志类允许错误和调试信息保存为文本文件。
+CodeIgniter 允许你在应用中使用以下的函数建立错误报告。另外，它有一个错误日志类，允许错误和调试信息保存为文本文件。
 
 注意:默认情况下，CodeIgniter 显示所有 PHP 错误。你可能想要在开发完成后改变这个行为。你可以在 index.php 顶部找到 error_reporting() 函数。即使禁用错误报告，发生错误时，错误日志也不回停止。
 
 CodeIgniter 和其他系统不太一样，错误报告函数是一个简单的程序接口，可以在整个应用程序里使用。不用考虑类或者是函数的范围，这种办法可以直接触发错误通知。
 
-无论系统核心调用 `exit()`， CodeIgniter 也会返回一个状态码。退出状态码独立于 HTTP 状态码，这个服务监视其他应用程序是否成功的执行完成，如果没有成功，是什么原因导致的。这些值定义在 *application/config/constants.php*。退出状态码在 CLI 设置中很有用，返回的状态码能让服务器软件追踪脚本代码，让你的程序更健壮。
+无论系统核心何时调用 `exit()`， CodeIgniter 也会返回一个状态码。退出状态码独立于 HTTP 状态码，这个服务监视其他应用程序是否成功的执行完成，如果没有成功，是什么原因导致的。这些值定义在 *application/config/constants.php*。退出状态码在 CLI 设置中很有用，返回的状态码能让服务器软件追踪脚本代码，让你的程序更健壮。
 
 以下函数能让你产生错误：
 
-## show_error($message, $status_code, $heading = 'An Error Was Encountered')
+## show\_error($message, $status_code, $heading = 'An Error Was Encountered')
 
 * 参数 混合$message: 错误消息
 * 参数 整数	$status_code: HTTP 状态码
@@ -28,7 +28,7 @@ CodeIgniter 和其他系统不太一样，错误报告函数是一个简单的�
 
 可选参数 `$status_code` 确定将会发生什么 HTTP 状态码到错误。如 `$status_code` 少于 100，HTTP 状态码将会设置为 500，退出状态码将会设置为：`$status_code + EXIT__AUTO_MIN`。如果这个值大于 `EXIT__AUTO_MAX`，或者如果 `$status_code` 为大于等于 100 的值，退出码将会设置为 `EXIT_ERROR`。更多细节参考 *application/config/constants.php*。
 
-## show_404($page = '', $log_error = TRUE)
+## show\_404($page = '', $log_error = TRUE)
 
 * 参数 字符串	$page: URI 字符串
 * 参数	bool	$log_error: 是否将错误写入日志
@@ -44,7 +44,7 @@ CodeIgniter 和其他系统不太一样，错误报告函数是一个简单的�
 
 这个函数希望传入的字符串是没有找到的文件路径。退出状态码将会设置为 `EXIT_UNKNOWN_FILE`。注意如没有找到控制器 CodeIgniter 将会自动的显示 404 消息。CodeIgniter 自动将任何 `show_404()` 调用写入日志。将第二个参数设置为 FALSE，将会跳过日志。
 
-## log_message($level, $message, $php_error = FALSE)
+## log\_message($level, $message, $php_error = FALSE)
 
 * 参数 字符串	$level: 日志级别 'error', 'debug' 或 'info'
 * 参数 字符串	$message: 写入日志的消息

@@ -44,7 +44,7 @@
 
 	}
 
-注意: 上述例子使用的是 `查询生成器` 数据库方法。
+注意: 上述例子使用的是`查询生成器`数据库方法。
 
 注意: 为了方便，我们直接使用了 `$_POST` 方法。这不是一个好方法，平时我们应该使用输入库方法 `$this->input->post('title')`。
 
@@ -128,17 +128,19 @@
 -  您可以使用标准方法来连接数据库, 也可以通过控制器或者您的模型类。
 -  您可以把第三个参数设置为 TRUE，来使模型加载函数自动连接数据库，连接配置可以在您的数据库配置文件中可以定义
 
-	$this->load->model('model_name', '', TRUE);
+
+	`$this->load->model('model_name', '', TRUE);`
+
 
 -  您可以手动设定第三个参数，来加载您的自定义数据库配置:
-
-	$config['hostname'] = 'localhost';
-	$config['username'] = 'myusername';
-	$config['password'] = 'mypassword';
-	$config['database'] = 'mydatabase';
-	$config['dbdriver'] = 'mysqli';
-	$config['dbprefix'] = '';
-	$config['pconnect'] = FALSE;
-	$config['db_debug'] = TRUE;
-
-	$this->load->model('model_name', '', $config);
+	
+		$config['hostname'] = 'localhost';
+		$config['username'] = 'myusername';
+		$config['password'] = 'mypassword';
+		$config['database'] = 'mydatabase';
+		$config['dbdriver'] = 'mysqli';
+		$config['dbprefix'] = '';
+		$config['pconnect'] = FALSE;
+		$config['db_debug'] = TRUE;
+	
+		$this->load->model('model_name', '', $config);

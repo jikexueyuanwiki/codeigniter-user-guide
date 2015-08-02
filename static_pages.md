@@ -24,9 +24,9 @@
 	        }
 	}
 
-你已经创建了一个 `pages` 类，包含一个名卫 `view` 的方法，参数卫 `$page`.`page` 类继承自 `CI_Controller` 类。这个新的 pages 类可以继承 `CI_Controller` (system/core/Controller.php) 类里面定义的方法和变量。
+你已经创建了一个 `pages` 类，包含一个名为 `view` 的方法，参数为 `$page`。`page` 类继承自 `CI_Controller` 类。这个新的 pages 类可以继承 `CI_Controller` (system/core/Controller.php) 类里面定义的方法和变量。
 
-这个控制器将会成为 **web 应用煤气请求的中心**。在 CodeIgniter 技术讨论中，它被称为超级对象。和任何 php 类一样，可以通过 `$this` 来调用这个控制器。通过 `$this`，可以加载库，视图，和常用的框架。
+这个控制器将会成为 **web 应用请求的中心**。在 CodeIgniter 技术讨论中，它被称为超级对象。和任何 php 类一样，可以通过 `$this` 来调用这个控制器。通过 `$this`，可以加载库，视图，和常用的框架。
 
 现在你已经有了第一个方法，可以开始创建基础页面模板了。我们将会创建两个视图（页面模板），页头和页尾。
 
@@ -88,12 +88,12 @@
 	$route['default_controller'] = 'pages/view';
 	$route['(:any)'] = 'pages/view/$1';
 
-CodeIgniter 从头到尾读取路由规则，并且路由到即一个匹配规则上。每一个规则都是一个正则表达式（左侧）映射到一个由斜线分隔的控制器和方法名（右侧）。当有请求时，CodeIgniter 查找第一个匹配规则，并且调用合适的控制器和方法，可能还会带参数。
+CodeIgniter 从头到尾读取路由规则，并且路由到一个匹配规则上。每一个规则都是一个正则表达式（左侧）映射到一个由斜线分隔的控制器和方法名（右侧）。当有请求时，CodeIgniter 查找第一个匹配规则，并且调用合适的控制器和方法，可能还会带参数。
 
 更多和 URI 路由相关的信息可以查看[路由文档].
 
-上面的代码第二行是指利用通配符 (:any) 可以使任何请求都能匹配到 `$routes` 数组，并且通过参数传递给pages 类的 view() 方法。
+上面的代码第二行是指利用通配符 (:any) 可以使任何请求都能匹配到 `$routes` 数组，并且通过参数传递给 pages 类的 view() 方法。
 
 现在访问：`index.php/about`。看看是否已经能正确地显示页面了呢？真帅！
 
-[路由文档]: routing.md
+[路由文档]: uri_routing.md

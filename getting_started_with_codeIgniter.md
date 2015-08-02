@@ -11,4 +11,4 @@
 如果你遇到了问题，可以到[社区](http://forum.codeigniter.com/)来寻求帮助，也可以看看其他人的例子。
 
 
-[安装]:installation.md
+[安装]: installation_instructions.md

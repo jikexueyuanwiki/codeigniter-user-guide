@@ -22,7 +22,7 @@ CodeIgniter 提供了一套兼容性函数，让你可以使用非原生的 PHP 
 
 ### 函数参考
 
-#### password_get_info($hash)
+#### password\_get\_info($hash)
 
 * 参数 字符串 $hash: 哈希密码
 * 返回：哈希过的密码信息
@@ -32,13 +32,13 @@ CodeIgniter 提供了一套兼容性函数，让你可以使用非原生的 PHP 
 
 #### password_hash($password, $algo[, $options = array()])
 
-* 参数 字符串	$password: Plain-text 密码
+* 参数 字符串	$password: 文本密码
 * 参数 整数	$algo: Hashing 算法
 * 参数 数组	$options: Hashing 参数
 * 返回	哈希过的密码，失败时返回 FALSE
 * 返回类型	字符串
 
-更多信息，可用参考 `PHP password_get_info() 使用手册`
+更多信息，可用参考 `PHP password_get_info() 使用手册`。
 
 注意: 除非你提供自己的（有效的）salt，这个函数可用进一步的提供依赖于可用的 CSPRNG 源。满足底下的每个条件：
 
@@ -47,15 +47,15 @@ CodeIgniter 提供了一套兼容性函数，让你可以使用非原生的 PHP 
 		- /dev/arandom
 		- /dev/urandom
 
-#### password_needs_rehash()
+#### password\_needs\_rehash()
 
 * 参数 字符串	$hash: 哈希密码
 * 参数 整数	$algo: 哈希算法
-* 参数 数组	$options: Hashing 参数
-* 返回	TRUE 如果哈希符合给定的算法和参数，返回 TRUE，否则返回 FALSE
+* 参数 数组	$options: 哈希参数
+* 返回 TRUE 如果哈希符合给定的算法和参数，返回 TRUE，否则返回 FALSE
 * 返回类型	bool
 
-更多信息，可以参考 `PHP password_needs_rehash() 使用手册`
+更多信息，可以参考 `PHP password_needs_rehash() 使用手册`。
 
 #### password_verify($password, $hash)
 
@@ -85,7 +85,7 @@ CodeIgniter 提供了一套兼容性函数，让你可以使用非原生的 PHP 
 
 更多信息，可以参考 `PHP hash_equals() 使用手册`。
 
-#### hash_pbkdf2($algo, $password, $salt, $iterations[, $length = 0[, $raw_output = FALSE]])
+#### hash\_pbkdf2($algo, $password, $salt, $iterations[, $length = 0[, $raw_output = FALSE]])
 
 * 参数 字符串	$algo: 哈希算法
 * 参数 字符串	$password: 密码
@@ -100,7 +100,7 @@ CodeIgniter 提供了一套兼容性函数，让你可以使用非原生的 PHP 
 
 ## 多字节字符串
 
-这套兼容性函数提供为 多字节字符串扩展提供有限支持。因为有限的替代方法，只有几个函数可用。
+这套兼容性函数提供为多字节字符串扩展提供有限支持。因为有限的替代方法，只有几个函数可用。
 
 注意: 当一个字符参数忽略，可以使用 `$config['charset']`。
 
@@ -110,7 +110,7 @@ CodeIgniter 提供了一套兼容性函数，让你可以使用非原生的 PHP 
 
 注意: 这个依赖性是可选的，这个函数总是被声明。如果 iconv 不可用，他们将会回退到 non-mbstring 版本。
 
-注意: 当提供字符设置时，必须通过 iconv 和 它认识的格式来支持。
+注意: 当提供字符设置时，必须通过 iconv 和它认识的格式来支持。
 
 注意: 你再检查 mbstring 扩展时，可以使用 `MB_ENABLED` 常量。
 
@@ -157,7 +157,7 @@ CodeIgniter 提供了一套兼容性函数，让你可以使用非原生的 PHP 
 
 ### 函数参考
 
-#### array_column(array $array, $column_key[, $index_key = NULL])
+#### array\_column(array $array, $column_key[, $index_key = NULL])
 
 * 参数 数组	$array: 取结果的源数组
 * 参数 混合	$column_key: 取结果的列的 key
@@ -167,7 +167,7 @@ CodeIgniter 提供了一套兼容性函数，让你可以使用非原生的 PHP 
 
 更多信息，可以参考 [PHP array_column() 使用手册](http://php.net/array_column)。
 
-#### array_replace(array $array1[, ...])
+#### array\_replace(array $array1[, ...])
 
 * 参数 数组	$array1: 将要替换的数组
 * 参数 array	...: 需要提前内容的数组
@@ -176,7 +176,7 @@ CodeIgniter 提供了一套兼容性函数，让你可以使用非原生的 PHP 
 
 更多信息，可以参考 [PHP array_replace() 使用手册](http://php.net/array_replace)。
 
-#### array_replace_recursive(array $array1[, ...])
+#### array\_replace\_recursive(array $array1[, ...])
 
 * 参数 数组	$array1: 将要替换内容的数组
 * 参数 array	...: 将要提取内容的数组
